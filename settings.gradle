@@ -1,0 +1,2 @@
+include ':app', ':appAI', ':appAI:sdk'
+rootProject.name = "Gonggam"
