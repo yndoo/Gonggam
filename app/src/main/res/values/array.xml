@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="itemList">
+        <item>스톱워치 인증</item>
+        <item>사진 인증</item>
+        <item>AI 인증</item>
+        <item>기타(?)</item>
+    </string-array>
+
+</resources>
