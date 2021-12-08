@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "69598251169",
+    "firebase_url": "https://gonggam-9a31c-default-rtdb.firebaseio.com",
+    "project_id": "gonggam-9a31c",
+    "storage_bucket": "gonggam-9a31c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69598251169:android:f8ccd468a49ebbfc5c48e0",
+        "android_client_info": {
+          "package_name": "com.example.gonggam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69598251169-n90bd2igb92f68170pmp48mm973j8p7l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gonggam",
+            "certificate_hash": "e9f93866e33e8f1932bee798c49a4df0a1511879"
+          }
+        },
+        {
+          "client_id": "69598251169-4mufslkfvvbhret1urju80doc1otke9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYBVwsAzqu_VwmvDfXnOd5WHLrtbxSqBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69598251169-4mufslkfvvbhret1urju80doc1otke9p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "69598251169-e2kptsffha1eessk84panra946ia6q0u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cono.gongam"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
