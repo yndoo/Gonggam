@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="280dp"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_white_border">
+
+
+    <TextView
+        android:id="@+id/tv_crgr_name"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="이름"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/et_crgr_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_crgr_name"
+        android:layout_width="134dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/rectangle_33"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_crgr_max"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="인원"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/et_crgr_max"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_crgr_name" />
+
+    <EditText
+        android:id="@+id/et_crgr_max"
+        android:layout_width="134dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/rectangle_33"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_crgr_name" />
+
+    <TextView
+        android:id="@+id/tv_crgr_public"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="공개여부"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/rg_crgr_public"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_crgr_max" />
+
+    <RadioGroup
+        android:id="@+id/rg_crgr_public"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal"
+        android:theme="@style/CustomRadioButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_crgr_public"
+        app:layout_constraintTop_toTopOf="@+id/et_crgr_max">
+
+        <RadioButton
+            android:id="@+id/rbtn_pub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="공개" />
+
+        <RadioButton
+            android:id="@+id/rbtn_pri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="비공개" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_crgr_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
+        android:text="인증방법"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/sp_crgr_howto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_crgr_public" />
+
+    <TextView
+        android:id="@+id/tv_crgr_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="목표"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/tv_crgr_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_crgr_category" />
+
+
+    <Button
+        android:id="@+id/btn_crgr_ok"
+        android:layout_width="56dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rectangle_35"
+        android:padding="0dp"
+        android:text="확인"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_crgr_cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_crgr_3" />
+
+    <Button
+        android:id="@+id/btn_crgr_cancel"
+        android:layout_width="56dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rectangle_35_none"
+        android:padding="0dp"
+        android:text="취소"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_crgr_ok"
+        app:layout_constraintTop_toBottomOf="@+id/et_crgr_time" />
+
+    <TextView
+        android:id="@+id/tv_crgr_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="일주일"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/et_crgr_days"
+        app:layout_constraintTop_toTopOf="@+id/sp_crgr_howto" />
+
+    <EditText
+        android:id="@+id/et_crgr_days"
+        android:layout_width="35dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/rectangle_36"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/tv_crgr_2"
+        app:layout_constraintTop_toTopOf="@+id/sp_crgr_howto" />
+
+    <EditText
+        android:id="@+id/et_crgr_time"
+        android:layout_width="35dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/rectangle_36"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/tv_crgr_4"
+        app:layout_constraintTop_toTopOf="@+id/et_crgr_days" />
+
+    <TextView
+        android:id="@+id/tv_crgr_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="회"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sp_crgr_howto" />
+
+    <TextView
+        android:id="@+id/tv_crgr_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="하루"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/et_crgr_time"
+        app:layout_constraintTop_toTopOf="@+id/tv_crgr_1" />
+
+    <TextView
+        android:id="@+id/tv_crgr_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="시간"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_crgr_2" />
+
+    <Spinner
+        android:id="@+id/sp_crgr_howto"
+        android:layout_width="134dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rg_crgr_public"
+        android:background="@drawable/rectangle_33"
+
+        android:gravity="center_horizontal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

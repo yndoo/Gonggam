@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/first" app:showAsAction="always" android:enabled="true"
+        android:icon="@drawable/menu_circle" android:title="라이브" />
+    <item android:id="@+id/second" app:showAsAction="always"
+        android:enabled="true" android:icon="@drawable/menu_circle" android:title="랭킹" />
+    <item android:id="@+id/third" app:showAsAction="always"
+        android:enabled="true" android:icon="@drawable/menu_circle" android:title="인증하기" />
+    <item android:id="@+id/fourth" app:showAsAction="always"
+        android:enabled="true" android:icon="@drawable/menu_circle" android:title="그룹" />
+    <item android:id="@+id/fifth" app:showAsAction="always"
+        android:enabled="true" android:icon="@drawable/menu_circle" android:title="나눔" />
+
+</menu>
