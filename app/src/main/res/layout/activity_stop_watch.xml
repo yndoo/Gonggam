@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StopWatchActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/bar_stopwatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스톱워치"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_gravity = "center"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <Chronometer
+        android:id="@+id/chronometer_watch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#CBD9FE"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bar_stopwatch" />
+
+    <Button
+        android:id="@+id/btn_watch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="196dp"
+        android:backgroundTint="#00ff0000"
+        android:text="일시정지"
+        android:textColor="@color/black"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/chronometer_watch"
+        app:layout_constraintEnd_toEndOf="@+id/chronometer_watch"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
