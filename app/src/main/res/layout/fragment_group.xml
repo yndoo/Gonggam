@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/abel"
-                android:text="그룹"
+                android:text="스터디 메이트 그룹"
                 android:textColor="@color/black"
                 android:textSize="17dp"
                 tools:layout_editor_absoluteX="186dp"

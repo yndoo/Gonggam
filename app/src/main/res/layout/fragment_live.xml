@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/abel"
-            android:text="라이브"
+            android:text="라이브 인증"
             android:textColor="@color/black"
             android:textSize="17sp"
             tools:layout_editor_absoluteX="186dp"

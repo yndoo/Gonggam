@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/abel"
-            android:text="나눔"
+            android:text="양식 공유"
             android:textColor="@color/black"
             android:textSize="17sp"
             tools:layout_editor_absoluteX="186dp"

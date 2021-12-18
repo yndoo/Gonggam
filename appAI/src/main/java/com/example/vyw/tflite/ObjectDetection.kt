@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.content.res.AssetManager
 import android.graphics.*
-import android.media.Image.Plane
 import android.os.Bundle
 import android.util.Log
 import android.util.Size
@@ -94,7 +93,7 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-            val rotation = viewFinder.display.rotation
+            val rotation = view_cam.display.rotation
 
             // Preview
             val preview = Preview.Builder()
@@ -102,7 +101,7 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
                 .setTargetRotation(rotation)
                 .build()
                 .also {
-                    it.setSurfaceProvider(viewFinder.surfaceProvider)
+                    it.setSurfaceProvider(view_cam.surfaceProvider)
                 }
 
             // ImageAnalysis
@@ -204,8 +203,8 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
         val h = if (rotation == 0 || rotation == 180) frameHeight else frameWidth
 
         // detection coords are in frame coord system, convert to screen coords
-        val scaleX = viewFinder.width.toFloat() / w
-        val scaleY = viewFinder.height.toFloat() / h
+        val scaleX = view_cam.width.toFloat() / w
+        val scaleY = view_cam.height.toFloat() / h
 
         // The camera view offset on screen
         val xoff = 0 // viewFinder.left.toFloat()

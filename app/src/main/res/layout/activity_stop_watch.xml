@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="스톱워치"
+            android:text="스톱워치 인증"
             android:textSize="17sp"
             android:textColor="@color/black"
             android:layout_gravity = "center"
