@@ -50,4 +50,16 @@
         app:layout_constraintEnd_toEndOf="@+id/chronometer_watch"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_notice"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        android:text="일시정지 버튼을 누르고 돌아가야 시간이 저장됩니다.\n정지하지 않고 뒤로가기 버튼을 누를 시 측정이 취소됩니다."
+        android:gravity="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chronometer_watch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
