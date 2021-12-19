@@ -1,34 +1,27 @@
 package com.example.gonggam
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RankingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RankingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
+
     }
 
     override fun onCreateView(
@@ -38,12 +31,32 @@ class RankingFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_ranking, container, false)
 
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
+        val user = auth.currentUser
+        var username = ""
 
         val pagerAdapter = RankingNestedFragmentAdapter(childFragmentManager)
         val pager = view.findViewById<ViewPager>(R.id.viewPager_ranking)
         pager.adapter = pagerAdapter
         val tab = view.findViewById<TabLayout>(R.id.tab_timeorday)
         tab.setupWithViewPager(pager)
+
+        database.child("user").child(user!!.uid).child("name").addValueEventListener( object : ValueEventListener {
+            override fun onDataChange(datasnapshot: DataSnapshot) {
+                val value = datasnapshot.getValue()
+                username = value.toString()
+
+                view.findViewById<TextView>(R.id.tv_myname_day).setText(username)
+                view.findViewById<TextView>(R.id.tv_myname_time).setText(username)
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("랭킹탭1","Failed to read user data.")
+            }
+
+        })
+
+
 
         return view
     }
@@ -61,10 +74,7 @@ class RankingFragment : Fragment() {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             RankingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
             }
     }
 }

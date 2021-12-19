@@ -92,7 +92,6 @@ class CertifyFragment : Fragment() {
         val time: TextView = view.findViewById(R.id.tv_totaltime)
 
 
-        val df = DecimalFormat("00")
 
         var hh=0
         var mm=0
@@ -139,5 +138,4 @@ class CertifyFragment : Fragment() {
 
         return view
     }
-
 }

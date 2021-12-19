@@ -8,5 +8,6 @@
     <application>
         <activity android:name=".AICamera" />
         <activity android:name=".ObjectDetection" />
+        <activity android:name=".app.MainActivity" />
     </application>
 </manifest>

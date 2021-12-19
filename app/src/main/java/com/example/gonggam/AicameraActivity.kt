@@ -39,4 +39,5 @@ class AicameraActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

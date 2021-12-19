@@ -7,6 +7,7 @@ import android.graphics.*
 import android.os.Bundle
 import android.util.Log
 import android.util.Size
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
@@ -14,6 +15,8 @@ import androidx.camera.core.ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_object_detection.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -21,6 +24,14 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+
+
+
+    var aitimed :Int = 0
+    //var num :Int = 0
+
 
     companion object {
         private const val TAG = "ObjectDetection"
@@ -35,14 +46,36 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
     private lateinit var cameraExecutor: ExecutorService
     private var imageAnalyzer: ImageAnalysis? = null
     private var detectorAddr = 0L
+    private var count_time = 0  // time
     private lateinit var nv21: ByteArray
     private val labelsMap = arrayListOf<String>()
     private val _paint = Paint()
-
+    private val __paint = Paint()
+    private val ___paint = Paint()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_object_detection)
+
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
+        val user = auth.currentUser
+
+        database.child("total_time").child(user!!.uid).child("ai_time").addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(datasnapshot: DataSnapshot) {
+                val value = datasnapshot.getValue()
+                aitimed = value.toString().toInt()
+
+                Log.i("ai onCreate : ","$aitimed")
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("오브젝트디텍션", "Failed to read ai_time data.")
+            }
+
+        })
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -51,14 +84,22 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
 
+
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         // init the paint for drawing the detections
         _paint.color = Color.RED
+        __paint.color = Color.BLACK
+        ___paint.color = Color.WHITE
         _paint.style = Paint.Style.STROKE
+        __paint.style = Paint.Style.FILL_AND_STROKE
+        ___paint.style = Paint.Style.FILL
         _paint.strokeWidth = 3f
+        __paint.strokeWidth = 3f
         _paint.textSize = 50f
+        __paint.textSize = 100f
         _paint.textAlign = Paint.Align.LEFT
+        __paint.textAlign = Paint.Align.CENTER
 
         // Set the detections drawings surface transparent
         surfaceView.setZOrderOnTop(true)
@@ -162,6 +203,16 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
 
         val res = detect(detectorAddr, nv21, image.width, image.height, rotation)
 
+        // Draw the rect
+        val text_p = Path()
+        val text_x = image.width.toFloat()/2+40;
+        val text_y = image.height.toFloat()*9/5;
+        text_p.moveTo(text_x-250, text_y-100)
+        text_p.lineTo(text_x+250, text_y-100)
+        text_p.lineTo(text_x+250, text_y+30)
+        text_p.lineTo(text_x-250, text_y+30)
+        text_p.lineTo(text_x-250, text_y-100)
+
         val canvas = surfaceView.holder.lockCanvas()
         if (canvas != null) {
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
@@ -169,6 +220,8 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
             // Draw the detections, in our case there are only 3
             for (i in 0 until res[0].toInt()) {
                 this.drawDetection(canvas, image.width, image.height, rotation, res, i)
+                canvas.drawPath(text_p, ___paint)
+                this.timer(canvas, image)
             }
 
             surfaceView.holder.unlockCanvasAndPost(canvas)
@@ -185,6 +238,10 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
         detectionsArr: FloatArray,
         detectionIdx: Int
     ) {
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
+        val user = auth.currentUser
+
 
         val pos = detectionIdx * 6 + 1
         val score = detectionsArr[pos + 0]
@@ -227,10 +284,51 @@ class ObjectDetection : AppCompatActivity(), ImageAnalysis.Analyzer {
         canvas.drawPath(p, _paint)
 
         // classId is zero-based (meaning class id 0 is class 1)
-        //val label = labelsMap[classId.toInt()]
+        val label = labelsMap[classId.toInt()]
 
-        //val txt = "%s (%.2f)".format(label, score)
-        //canvas.drawText(txt, xmin, ymin, _paint)
+        val txt = "%s (%.2f)".format(label, score)
+        canvas.drawText(txt, xmin, ymin, _paint)
+        count_time++;
+
+        database.child("total_time").child(user!!.uid).child("ai_time").addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(datasnapshot: DataSnapshot) {
+                val value = datasnapshot.getValue()
+                aitimed = value.toString().toInt()
+
+                Log.i("ai else : ","$aitimed")
+                aitimed = aitimed + 1
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("오브젝트디텍션", "Failed to read ai_time data.")
+            }
+
+        })
+        database.child("total_time").child(user!!.uid).child("ai_time").setValue(aitimed)
+    }
+    
+    private fun timer(
+        canvas: Canvas,
+        image: ImageProxy
+    ) {
+        var time = count_time;
+        var S = 0;
+        var M = 0;
+        var H = 0;
+
+        if (time>0) {
+            H = time / 360;
+            M = (time - (H * 360))/60;
+            S = time - (H*360) - (M*60);
+        }
+
+        runOnUiThread{
+            findViewById<TextView>(R.id.tv_aitimer).setText(String.format("%02d:%02d:%02d",H, M, S))
+        }
+
+        canvas.drawText("%02d:%02d:%02d".format(H, M, S), image.width.toFloat()/2+40, image.height.toFloat()*9/5 , __paint)
     }
 
     private fun loadLabels() {

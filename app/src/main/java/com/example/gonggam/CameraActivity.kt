@@ -49,6 +49,10 @@ class CameraActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn_capture).setOnClickListener {
             takePhoto()
         }
+        findViewById<Button>(R.id.btn_upload).setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         outputDirectory = getOutputDirectory()
 
@@ -81,9 +85,9 @@ class CameraActivity : AppCompatActivity() {
                 }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
-                    val msg = "Photo capture succeeded: $savedUri"
+                    val msg = "사진 인증이 1회 완료되었습니다: $savedUri"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    // 사진 저장 성공시 DB에서 횟수 불러오고 +1 하여 저장
+                    // 사진 저장 성공시 DB에서 횟수 불러오기
                     database.child("picture_count").child(user!!.uid).addValueEventListener( object :
                         ValueEventListener {
                         override fun onDataChange(datasnapshot: DataSnapshot) {
@@ -95,8 +99,10 @@ class CameraActivity : AppCompatActivity() {
                         }
                     })
                     Log.d("CameraX-Debug", msg)
+                    // pcount +1 해서 다시 DB에 저장
                     pcount += 1
                     database.child("picture_count").child(user!!.uid).setValue(pcount)
+                    //Toast.makeText(baseContext, "사진 인증이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             })
     }
